@@ -1,6 +1,7 @@
 // import React from 'react'
 
 import Beranda from "./Page/Beranda";
+import { ContactUs } from "./Page/ContactUs";
 import DetailProduct from "./Page/DetailProduct";
 import LayoutPage from "./Page/LayoutPage";
 import ListProduct from "./Page/ListProduct";
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/products/:id",
         element: <DetailProduct />,
+      },
+      {
+        path: "/hubungi-kami",
+        element: <ContactUs />,
       },
     ],
   },
