@@ -1,6 +1,7 @@
 // import React from 'react'
 
 import Beranda from "./Page/Beranda";
+import Cart from "./Page/Cart";
 import DetailProduct from "./Page/DetailProduct";
 import LayoutPage from "./Page/LayoutPage";
 import ListProduct from "./Page/ListProduct";
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         path: "/products/:id",
         element: <DetailProduct />,
       },
+      {
+        path: "/cart/:id",
+        element: <Cart />,
+      },
     ],
   },
 ]);
@@ -71,3 +76,4 @@ const App = () => {
 };
 
 export default App;
+
