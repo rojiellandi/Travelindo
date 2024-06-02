@@ -1,7 +1,9 @@
 // import React from 'react'
 
 import Beranda from "./Page/Beranda";
+import DetailProduct from "./Page/DetailProduct";
 import LayoutPage from "./Page/LayoutPage";
+import ListProduct from "./Page/ListProduct";
 import "./index.css";
 import {
   Route,
@@ -46,7 +48,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Beranda/>,
+        element: <Beranda />,
+      },
+      {
+        path: "/products",
+        element: <ListProduct />,
+      },
+      {
+        path: "/products/:id",
+        element: <DetailProduct />,
       },
     ],
   },
@@ -57,7 +67,6 @@ const App = () => {
     <>
       <RouterProvider router={router} />
     </>
-    
   );
 };
 

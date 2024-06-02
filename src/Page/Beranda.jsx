@@ -1,7 +1,7 @@
 import React from "react";
 import home from "/assets/home.png";
 import home2 from "/assets/home2.png";
-import whatsapp from "/assets/whatsapp.png";
+
 import header1 from "/assets/header1.png";
 import header2 from "/assets/header2.png";
 import header3 from "/assets/header3.png";
@@ -21,25 +21,17 @@ const Beranda = () => {
   ];
 
   const galeri = [
-    { src: "/assets/galeri1.png"  },
-    { src: "/assets/galeri2.png"},
-    { src: "/assets/galeri3.png"},
+    { src: "/assets/galeri1.png" },
+    { src: "/assets/galeri2.png" },
+    { src: "/assets/galeri3.png" },
     { src: "/assets/galeri4.png" },
     { src: "/assets/galeri5.png" },
   ];
-
 
   return (
     <div className="relative">
       <div className="relative">
         <img src={home} alt="" className="aspect-[5/2] w-full object-cover" />
-        <div>
-          <img
-            src={whatsapp}
-            alt=""
-            className="cursor-pointer transform transition-transform duration-300 hover:scale-110 absolute bottom-1 right-2 sm:bottom-6 sm:right-14  "
-          />
-        </div>
       </div>
 
       {/* tujuan dan tanggal */}
@@ -79,7 +71,7 @@ const Beranda = () => {
 
       {/* kumpulam gambar */}
 
-      <div className="mx-[17%] mt-[10%] max-[768px]:mt-[30%] max-[425px]:mt-[45%]">
+      <div className="mx-[17%] mt-[10%] max-[768px]:mt-[30%] max-[425px]:mt-[45%] max-[425px]:w-full">
         <div className="md:flex md:justify-between">
           <div>
             <div className="text-xl">Harga Spesial</div>
@@ -133,9 +125,26 @@ const Beranda = () => {
         </div>
       </div>
 
-      <div className="relative mb-20">
-        <img src={home2} alt="" className="aspect-[5/2] w-full object-cover" />
+      <div class="relative mb-20">
+        <img
+          src={home2}
+          alt=""
+          class="aspect-[5/2] w-full object-cover max-sm:h-[700px]"
+        />
+        <div class="absolute bottom-0 lg:bottom-20 text-white right-0  p-4 w-[40%] max-sm:text-[2px] max-sm:w-[50%]">
+          <div class="lg:text-4xl md:text-lg font-semibold">
+            Nikmati Dunia Tanpa Menguras kantong
+          </div>
+          <div class="md:text-sm text-xs mt-4">
+            Wujudkan petualangan tak terlupakan dan jelajahi keajaiban dunia
+            tanpa menguras kantong dengan solusi travel hemat kami. Kami
+            menawarkan berbagai macam paket dan pilihan travel yang sesuai
+            dengan semua budget, memastikan Anda dapat menikmati yang terbaik
+            dari dunia tanpa mengorbankan kualitas atau pengalaman.{" "}
+          </div>
+        </div>
       </div>
+
       <div className="text-center mb-10">
         <div className="text-xl mb-5">CARI TEMPAT TERINDAH</div>
         <div className="text-4xl font-bold text-[#0B224E] mb-3">
@@ -178,11 +187,9 @@ const Beranda = () => {
           GALERI TRAVEL KAMI
         </div>
         <div className="mx-[17%]">
-          <GaleriGrid images={galeri}/>
+          <GaleriGrid images={galeri} />
         </div>
-       
       </div>
-
     </div>
   );
 };

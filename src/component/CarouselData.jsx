@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "primereact/button";
 import { Carousel } from "primereact/carousel";
 import { Rating } from "primereact/rating";
+import { Link } from 'react-router-dom';
 
 export default function CarouselData() {
   const [products, setProducts] = useState([
@@ -74,11 +75,13 @@ export default function CarouselData() {
       <div key={product.id} className="group  mx-4 ">
         <div className="shadow-container rounded-md ">
           <div>
-            <img
-              src={`/assets/${product.image}`}
-              alt=""
-              className="object-cover w-full h-full"
-            />
+            <Link to="/products/1">
+              <img
+                src={`/assets/${product.image}`}
+                alt=""
+                className="object-cover w-full h-full hover:opacity-80"
+              />
+            </Link>
           </div>
           <div className="mt-4 ml-2 ">
             <div className="mb-2">
@@ -87,10 +90,10 @@ export default function CarouselData() {
             <div className="card flex justify-content-center mb-2">
               <Rating value={product.rating} readOnly cancel={false} />
             </div>
-          
+
             <div className="flex text-sm font-semibold mb-2 pb-2  justify-between">
               <div>
-              <div className="text-xs mb-2 text-[#9095A0]">Mulai Dari</div>
+                <div className="text-xs mb-2 text-[#9095A0]">Mulai Dari</div>
                 {formatRupiah(product.price)}{" "}
                 <span className="font-normal text-[#9095A0]">/Pax</span>
               </div>
