@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  height: 5px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #1a317c;
+}
+
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #1a317c;
+}
+
 body,
 html {
   margin: 0;
@@ -13,6 +29,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   /* max-width: 1440px; */
 }
+
+
 
 #root {
   width: 100%;
@@ -73,3 +91,27 @@ html {
 .shadow-container-2{
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
+
+
+.container-cart {
+  max-height: 700px;
+  overflow-y: auto;
+  padding-right: 20px;
+}
+
+.child_container {
+   width: 95%;
+  }
+
+
+  .card_usePromo{
+    background: #EDF0F8;
+    padding: 1rem;
+    border-top-right-radius: 10px;
+    border-top-left-radius:10px ;
+    font-size: 13px;
+    color: #2A459C;
+    font-weight: 600;
+    margin-bottom: -1%;
+  }
+  

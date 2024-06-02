@@ -2,6 +2,7 @@
 
 import AboutUs from "./Page/AboutUs";
 import Beranda from "./Page/Beranda";
+import Cart from "./Page/Cart";
 import DetailProduct from "./Page/DetailProduct";
 import LayoutPage from "./Page/LayoutPage";
 import ListProduct from "./Page/ListProduct";
@@ -62,7 +63,11 @@ const router = createBrowserRouter([
       {
         path: "/tentang-kami",
         element: <AboutUs />,
-      }
+      },
+      {
+        path: "/cart/:id",
+        element: <Cart />,
+      },
     ],
   },
 ]);
