@@ -1,5 +1,6 @@
 // import React from 'react'
 
+import AboutUs from "./Page/AboutUs";
 import Beranda from "./Page/Beranda";
 import DetailProduct from "./Page/DetailProduct";
 import LayoutPage from "./Page/LayoutPage";
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         path: "/products/:id",
         element: <DetailProduct />,
       },
+      {
+        path: "/tentang-kami",
+        element: <AboutUs />,
+      }
     ],
   },
 ]);
