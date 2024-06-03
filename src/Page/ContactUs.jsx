@@ -14,13 +14,13 @@ export function ContactUs() {
       {/* Background */}
       <div className="relative w-full mt-3">
         <img
-          src="/public/assets/city.png"
+          src="assets/city.png"
           alt="city"
-          className="w-full h-auto"
+          className="w-full lg:h-auto h-[900px]"
         />
         {/* Send Us a Message */}
-        <div className="absolute top-0 left-0 w-full h-full flex items-center md:ml-32 -mt-52">
-          <h1 className="text-white text-4xl font-bold">Send Us a Message</h1>
+        <div className="absolute top-0 left-0 w-full lg:h-full h-[70%] flex items-center md:ml-32 -mt-52">
+          <h1 className="text-white text-4xl font-bold lg:ml-0 ml-10">Send Us a Message</h1>
         </div>
       </div>
 
