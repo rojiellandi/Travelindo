@@ -558,7 +558,7 @@ export default function Pembayaran() {
               <p className="text-2xl font-bold">Your Order</p>
             </div>
 
-            {/* subtitle */}
+            {/* subtitlee */}
             <div className="flex mx-6">
               <div className="p-4 border-2 border-r-0 w-full">
                 <p className="text-[#7A7A7A] font-bold">Product</p>
