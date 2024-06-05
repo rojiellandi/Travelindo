@@ -32,6 +32,7 @@ html {
 
 
 
+
 #root {
   width: 100%;
 }
@@ -114,4 +115,17 @@ html {
     font-weight: 600;
     margin-bottom: -1%;
   }
+
+
+  .container_pembayaran{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
   
+
+  textarea:focus, input:focus{
+    outline: none;
+}
+
+.error {
+  border: 2px solid red;
+}

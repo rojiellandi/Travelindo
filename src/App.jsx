@@ -6,6 +6,7 @@ import Cart from "./Page/Cart";
 import DetailProduct from "./Page/DetailProduct";
 import LayoutPage from "./Page/LayoutPage";
 import ListProduct from "./Page/ListProduct";
+import Pembayaran from "./Page/Pembayaran";
 import "./index.css";
 import {
   Route,
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "/cart/:id",
         element: <Cart />,
+      },
+      {
+        path: "/pembayaran",
+        element: <Pembayaran />,
       },
     ],
   },
