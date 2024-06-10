@@ -55,11 +55,11 @@ const router = createBrowserRouter([
         element: <Beranda />,
       },
       {
-        path: "/products",
+        path: "/jadwal",
         element: <ListProduct />,
       },
       {
-        path: "/products/:id",
+        path: "/jadwal/:id",
         element: <DetailProduct />,
       },
       {
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
       element: <AboutUs />
     },
     {
-        path: "/cart/:id",
+        path: "/cart",
         element: <Cart />,
       },
       {

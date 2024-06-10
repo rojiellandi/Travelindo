@@ -1,9 +1,10 @@
 // import React from 'react'
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import logo from "/assets/logo.svg";
 import dropdown from "/assets/dropdown.png";
 import cart from "/assets/cart.png";
+import { Link } from "react-router-dom";
 
 import { Fragment } from "react";
 import {
@@ -24,16 +25,9 @@ function classNames(...classes) {
 }
 
 const Navbar = () => {
-  //   const location = useLocation();
-  const [activePage, setActivePage] = useState("/");
-
-  // Set activePage state based on current location pathname
-  useState(() => {
-    setActivePage(location.pathname);
-  }, [location]);
+  const location = useLocation();
 
   return (
-    
     <Disclosure as="nav" className="bg-white shadow w-full">
       {({ open }) => (
         <>
@@ -44,71 +38,72 @@ const Navbar = () => {
                   <img src={logo} alt="Logo" />
                 </div>
                 <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
-                  {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                   <div className="col-span-8 flex gap-8 items-center pt-2">
-                    <Link
+                    <NavLink
                       to="/"
-                      className={`pb-2 px-3 relative ${
-                        activePage === "/" ? "font-bold text-[#2D5FC2]" : ""
-                      }`}
+                      className={({ isActive }) =>
+                        `pb-2 px-3 relative ${
+                          isActive ? "font-bold text-[#2D5FC2]" : ""
+                        }`
+                      }
                     >
                       Beranda
-                      {activePage === "/" && (
+                      {location.pathname === "/" && (
                         <div className="absolute -bottom-1 left-0 right-0 h-1 bg-[#2D5FC2] rounded-lg"></div>
                       )}
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                       to="/jadwal"
-                      className={`pb-2 px-3 relative ${
-                        activePage === "/jadwal"
-                          ? "font-bold text-[#2D5FC2]"
-                          : ""
-                      }`}
+                      className={({ isActive }) =>
+                        `pb-2 px-3 relative ${
+                          isActive ? "font-bold text-[#2D5FC2]" : ""
+                        }`
+                      }
                     >
                       Jadwal
-                      {activePage === "/jadwal" && (
+                      {location.pathname === "/jadwal" && (
                         <div className="absolute -bottom-1 left-0 right-0 h-1 bg-[#2D5FC2] rounded-lg"></div>
                       )}
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                       to="/private-tour"
-                      className={`pb-2 px-3 relative ${
-                        activePage === "/private-tour"
-                          ? "font-bold text-[#2D5FC2]"
-                          : ""
-                      }`}
+                      className={({ isActive }) =>
+                        `pb-2 px-3 relative ${
+                          isActive ? "font-bold text-[#2D5FC2]" : ""
+                        }`
+                      }
                     >
                       Private Tour
-                      {activePage === "/private-tour" && (
+                      {location.pathname === "/private-tour" && (
                         <div className="absolute -bottom-1 left-0 right-0 h-1 bg-[#2D5FC2] rounded-lg"></div>
                       )}
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                       to="/hubungi-kami"
-                      className={`pb-2 px-3 relative ${
-                        activePage === "/hubungi-kami"
-                          ? "font-bold text-[#2D5FC2]"
-                          : ""
-                      }`}
+                      className={({ isActive }) =>
+                        `pb-2 px-3 relative ${
+                          isActive ? "font-bold text-[#2D5FC2]" : ""
+                        }`
+                      }
                     >
                       Hubungi Kami
-                      {activePage === "/hubungi-kami" && (
+                      {location.pathname === "/hubungi-kami" && (
                         <div className="absolute -bottom-1 left-0 right-0 h-1 bg-[#2D5FC2] rounded-lg"></div>
                       )}
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                       to="/tentang-kami"
-                      className={`pb-2 px-3 relative ${
-                        activePage === "/tentang-kami"
-                          ? "font-bold text-[#2D5FC2]"
-                          : ""
-                      }`}
+                      className={({ isActive }) =>
+                        `pb-2 px-3 relative ${
+                          isActive ? "font-bold text-[#2D5FC2]" : ""
+                        }`
+                      }
                     >
                       Tentang Kami
-                      {activePage === "/tentang-kami" && (
+                      {location.pathname === "/tentang-kami" && (
                         <div className="absolute -bottom-1 left-0 right-0 h-1 bg-[#2D5FC2] rounded-lg"></div>
                       )}
-                    </Link>
+                    </NavLink>
                   </div>
                 </div>
               </div>
@@ -136,10 +131,12 @@ const Navbar = () => {
               </div>
 
               <div className="flex items-center ml-4">
-                <img src={cart} alt="" width={"20px"} />
+                <Link to={`/cart`}>
+                  {" "}
+                  <img src={cart} alt="" width={"20px"} />
+                </Link>
               </div>
               <div className="flex items-center lg:hidden">
-                {/* Mobile menu button */}
                 <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 ">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
@@ -160,7 +157,6 @@ const Navbar = () => {
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
 
-                {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-4 flex-shrink-0">
                   <div>
                     <MenuButton className="relative flex rounded-full bg-white text-sm d ">
@@ -234,7 +230,6 @@ const Navbar = () => {
 
           <DisclosurePanel className="lg:hidden">
             <div className="space-y-1 pb-3 pt-2">
-              {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" */}
               <DisclosureButton
                 as="a"
                 href="#"

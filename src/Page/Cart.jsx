@@ -180,6 +180,9 @@ const Cart = () => {
                         </div>
                         <div className="lg:col-span-4 lg:mt-6 md:mt-2 lg:ml-0 md:ml-6 font-semibold">
                           {item.description}
+                          <div className="mt-4">DP: Rp. 2.000.000</div>
+                          <div className="font-normal">Pelunasan: Rp. 12.000.000</div>
+
                         </div>
                         <div className="lg:col-span-2 lg:mt-6 md:mt-2 lg:ml-6 md:ml-6 text-[#4376FA] font-medium">
                           {formatRupiah(item.price)}{" "}

@@ -37,8 +37,7 @@ import {
 import { Rating } from "primereact/rating";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import Pagination from "@mui/material/Pagination";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 const sortOptions = [
   { name: "Best Rating", href: "#", current: true },
@@ -121,7 +120,6 @@ const filters = [
     ],
   },
 ];
-
 
 const ListProduct = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -239,11 +237,10 @@ const ListProduct = () => {
   function formatRupiah(angka) {
     return `Rp ${angka.toLocaleString("id-ID")}`;
   }
-  
+
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
-  
 
   return (
     <div className="bg-white">
@@ -590,13 +587,13 @@ const ListProduct = () => {
                 {getProductSlice().map((product) => (
                   <div className="shadow-container rounded-md ">
                     <div>
-                    <Link to="/products/1"> 
-                      <img
-                        src={`/assets/${product.image}`}
-                        alt=""
-                        className="object-cover w-full h-full hover:opacity-80"
-                      />
-                    </Link>
+                      <Link to="/jadwal/1">
+                        <img
+                          src={`/assets/${product.image}`}
+                          alt=""
+                          className="object-cover w-full h-full hover:opacity-80"
+                        />
+                      </Link>
                     </div>
                     <div className="mt-4 ml-2 ">
                       <div className="mb-2">
@@ -623,9 +620,13 @@ const ListProduct = () => {
                           </span>
                         </div>
                         <div className="mr-4">
-                          <button className="bg-[#4773CA] text-white px-7 py-2 rounded-md hover:opacity-85 lg:px-8 lg:py-2">
-                            Pesan
-                          </button>
+                          <Link to={`/jadwal/${product.id}`}>
+                            {" "}
+                            {/* Ubah sesuai dengan id atau path yang sesuai */}
+                            <button className="bg-[#4773CA] text-white px-7 py-2 rounded-md hover:opacity-85 lg:px-8 lg:py-2">
+                              Pesan
+                            </button>
+                          </Link>
                         </div>
                       </div>
                     </div>

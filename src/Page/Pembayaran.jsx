@@ -488,12 +488,15 @@ export default function Pembayaran() {
                     <div className="font-medium "> Rp. 16.055.000</div>
                   </div>
                   <div className="my-6 text-center pb-6">
+                  <Link to={`/pembayaran`}>
+                            
                     <button
                       type="submit"
                       className="bg-[#4773CA] p-2 rounded-md text-white font-medium"
                     >
                       Memesan Tempat
                     </button>
+                          </Link>
                   </div>
                 </div>
               </div>
