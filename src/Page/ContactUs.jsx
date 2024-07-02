@@ -16,16 +16,18 @@ export function ContactUs() {
         <img
           src="assets/city.png"
           alt="city"
-          className="w-full lg:h-auto h-[900px]"
+          className="w-full lg:h-auto h-[900px] object-cover"
         />
         {/* Send Us a Message */}
         <div className="absolute top-0 left-0 w-full lg:h-full h-[70%] flex items-center md:ml-32 -mt-52">
-          <h1 className="text-white text-4xl font-bold lg:ml-0 ml-10">Send Us a Message</h1>
+          <h1 className="text-white text-4xl font-bold lg:ml-0 ml-10">
+            Send Us a Message
+          </h1>
         </div>
       </div>
 
       {/* Layout Form and Main Office */}
-      <div className="absolute top-[300px] w-full max-w-6xl p-6 mx-auto flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 md:ml-24">
+      <div className="absolute top-[300px] w-full max-w-6xl p-4 md:p-6 mx-auto flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 md:ml-24">
         {/* Form */}
         <div className="w-full md:w-1/2">
           <form className="space-y-4">
@@ -34,7 +36,7 @@ export function ContactUs() {
                 id="name"
                 name="name"
                 placeholder="Your Name"
-                className="mt-1 block w-full rounded-md bg-white bg-opacity-30 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm pl-4 pt-2 h-10"
+                className="mt-1 block w-full rounded-md bg-white bg-opacity-30 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm pl-4 pt-2.5 h-10"
               />
             </div>
             <div>
@@ -42,7 +44,7 @@ export function ContactUs() {
                 id="email"
                 name="email"
                 placeholder="Your Email"
-                className="mt-1 block w-full rounded-md bg-white bg-opacity-30 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm pl-4 pt-2 h-10"
+                className="mt-1 block w-full rounded-md bg-white bg-opacity-30 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm pl-4 pt-2.5 h-10"
               />
             </div>
             <div>
@@ -50,13 +52,13 @@ export function ContactUs() {
                 id="message"
                 name="message"
                 placeholder="Your Message"
-                className="mt-1 block w-full h-[165px] rounded-md bg-white bg-opacity-30 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm pl-4 pt-2"
+                className="mt-1 block w-full h-[165px] rounded-md bg-white bg-opacity-30 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm pl-4 pt-2.5"
               />
             </div>
             <div className="text-center">
               <button
                 type="submit"
-                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-3xl text-white bg-white bg-opacity-30 hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-[400px]"
+                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-3xl text-white bg-white bg-opacity-30 hover:bg-[#26355D] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-[400px]"
               >
                 Send a Message
               </button>

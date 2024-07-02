@@ -1,10 +1,32 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { GoCircle } from "react-icons/go";
+import { GiPlainCircle } from "react-icons/gi";
 
 export default function Pembayaran() {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedPayment, setSelectedPayment] = useState("");
   const [showBankTransfer, setShowBankTransfer] = useState(false);
+  const [showAddressFields, setShowAddressFields] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("DP");
+  const [depositValue, setDepositValue] = useState(0);
+
+  const handleDepositChange = (event) => {
+    const value = Number(event.target.value);
+    if (!isNaN(value) && value >= 0) {
+      setDepositValue(value);
+    }
+  };
+
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+    if (option === "lunas") {
+      setDepositValue(0);
+    }
+  };
+
+  const totalAmount = 16055000;
 
   const handlePaymentChange = (e) => {
     console.log("masukk");
@@ -64,6 +86,10 @@ export default function Pembayaran() {
 
   const onSubmit = (data) => {
     console.log(data);
+  };
+
+  const handleCheckboxChange = () => {
+    setShowAddressFields(!showAddressFields);
   };
 
   return (
@@ -488,15 +514,14 @@ export default function Pembayaran() {
                     <div className="font-medium "> Rp. 16.055.000</div>
                   </div>
                   <div className="my-6 text-center pb-6">
-                  <Link to={`/pembayaran`}>
-                            
-                    <button
-                      type="submit"
-                      className="bg-[#4773CA] p-2 rounded-md text-white font-medium"
-                    >
-                      Memesan Tempat
-                    </button>
-                          </Link>
+                    <Link to={`/pembayaran`}>
+                      <button
+                        type="submit"
+                        className="bg-[#4773CA] p-2 rounded-md text-white font-medium"
+                      >
+                        Memesan Tempat
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -525,19 +550,192 @@ export default function Pembayaran() {
         {/* order notes */}
         <div className="lg:grid lg:grid-cols-12">
           <div className="lg:col-span-8 container_pembayaran rounded-md pb-6">
-            <div className="p-5 flex items-center">
-              <input
-                type="checkbox"
-                id="shipToDifferentAddress"
-                name="shipToDifferentAddress"
-                className="mr-2"
-              />
-              <label
-                htmlFor="shipToDifferentAddress"
-                className="text-[#7A7A7A]"
-              >
-                Ship to a different address?
-              </label>
+            <div className="p-5">
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="shipToDifferentAddress"
+                  name="shipToDifferentAddress"
+                  className="mr-2"
+                  onChange={handleCheckboxChange}
+                />
+                <label
+                  htmlFor="shipToDifferentAddress"
+                  className="text-[#7A7A7A]"
+                >
+                  Ship to a different address?
+                </label>
+              </div>
+
+              {showAddressFields && (
+                <div className="mt-2">
+                  {/* country */}
+                  <div className="flex flex-col flex-grow mt-4 md:mt-0 py-3">
+                    <label
+                      htmlFor="country"
+                      className={`font-semibold text-gray-600 ${
+                        errors.firstName ? "text-red-500" : ""
+                      }`}
+                    >
+                      Country / Region<span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      id="country"
+                      name="country"
+                      onChange={(e) => setSelectedCountry(e.target.value)}
+                      className={`bg-[#F0F0F0] rounded-md p-2 mt-2 ${
+                        errors.firstName ? "error" : ""
+                      }`}
+                      {...register("country", {
+                        required: "Country is required",
+                      })}
+                    >
+                      <option value="">Select Country</option>
+                      {countries.map((country) => (
+                        <option key={country} value={country}>
+                          {country}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.country && (
+                      <p className="text-red-500">{errors.country.message}</p>
+                    )}
+                  </div>
+                  {/* Street address */}
+                  <div className="flex flex-col flex-grow mt-4 md:mt-0 py-3">
+                    <label
+                      htmlFor="address"
+                      className={`font-semibold text-gray-600 ${
+                        errors.firstName ? "text-red-500" : ""
+                      }`}
+                    >
+                      Street Address<span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="address"
+                      name="address"
+                      placeholder="House number and street name"
+                      {...register("address", {
+                        required: "Address is required",
+                      })}
+                      className={`bg-[#F0F0F0] rounded-md p-2 mt-2 ${
+                        errors.firstName ? "error" : ""
+                      }`}
+                    />{" "}
+                    {errors.address && (
+                      <p className="text-red-500">{errors.address.message}</p>
+                    )}
+                  </div>
+                  {/* Town / City */}
+                  <div className="flex flex-col flex-grow mt-4 md:mt-0 py-3">
+                    <label
+                      htmlFor="townCity"
+                      className={`font-semibold text-gray-600 ${
+                        errors.firstName ? "text-red-500" : ""
+                      }`}
+                    >
+                      Town / City<span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="townCity"
+                      name="townCity"
+                      placeholder="Your town / city name"
+                      {...register("townCity", {
+                        required: "Town / City is required",
+                      })}
+                      className={`bg-[#F0F0F0] rounded-md p-2 mt-2 ${
+                        errors.firstName ? "error" : ""
+                      }`}
+                    />
+                    {errors.townCity && (
+                      <p className="text-red-500">{errors.townCity.message}</p>
+                    )}
+                  </div>
+                  {/* Province*/}
+                  <div className="flex flex-col flex-grow mt-4 md:mt-0 py-3">
+                    <label
+                      htmlFor="province"
+                      className={`font-semibold text-gray-600 ${
+                        errors.firstName ? "text-red-500" : ""
+                      }`}
+                    >
+                      Province
+                      <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="province"
+                      name="province"
+                      placeholder="Your Province"
+                      {...register("province", {
+                        required: "Province is required",
+                      })}
+                      className={`bg-[#F0F0F0] rounded-md p-2 mt-2 ${
+                        errors.firstName ? "error" : ""
+                      }`}
+                    />{" "}
+                    {errors.province && (
+                      <p className="text-red-500">{errors.province.message}</p>
+                    )}
+                  </div>
+                  {/* Postcode / ZIP*/}
+                  <div className="flex flex-col flex-grow mt-4 md:mt-0 py-3">
+                    <label
+                      htmlFor="postcode"
+                      className={`font-semibold text-gray-600 ${
+                        errors.firstName ? "text-red-500" : ""
+                      }`}
+                    >
+                      Postcode / ZIP<span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="postcode"
+                      name="postcode"
+                      placeholder="Your postcode / ZIP"
+                      {...register("postcode", {
+                        required: "Postcode is required",
+                      })}
+                      className={`bg-[#F0F0F0] rounded-md p-2 mt-2 ${
+                        errors.firstName ? "error" : ""
+                      }`}
+                    />{" "}
+                    {errors.postcode && (
+                      <p className="text-red-500">{errors.postcode.message}</p>
+                    )}
+                  </div>
+                  {/* Phone*/}
+                  <div className="flex flex-col flex-grow mt-4 md:mt-0 py-3">
+                    <label
+                      htmlFor="phoneNumber"
+                      className={`font-semibold text-gray-600 ${
+                        errors.firstName ? "text-red-500" : ""
+                      }`}
+                    >
+                      Phone Number<span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      placeholder="Your Phone Number"
+                      {...register("phoneNumber", {
+                        required: "Phone Number is required",
+                      })}
+                      className={`bg-[#F0F0F0] rounded-md p-2 mt-2 ${
+                        errors.firstName ? "error" : ""
+                      }`}
+                    />{" "}
+                    {errors.phoneNumber && (
+                      <p className="text-red-500">
+                        {errors.phoneNumber.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
             <div className="pl-5 flex items-center">
               <p className="text-[#7A7A7A]">Order notes (optional)</p>
@@ -547,7 +745,7 @@ export default function Pembayaran() {
                 id="orderNotes"
                 name="orderNotes"
                 rows="4"
-                placeholder="Notes Details."
+                placeholder="Notes Details"
                 className="bg-[#F0F0F0] rounded-md p-2 w-full"
               ></textarea>
             </div>
@@ -576,10 +774,13 @@ export default function Pembayaran() {
               <div className="p-4 border-2 border-r-0 border-t-0 w-full">
                 <p className="text-[#7A7A7A]">
                   Vinca Vovages Labuhan Bajo Private Trip 4 <br />
-                  Days 3 Night  × 1
+                  Days 3 Night  × 3
                 </p>
                 <p className="mt-5 text-[#7A7A7A]">
-                  <span className="font-semibold">DP:</span> Rp. 2.000.0000 <br /> <span className="font-semibold">Pelunasan:</span> Rp. 2.000.0000
+                  <span className="font-semibold">MinimumDP:</span> Rp.
+                  2.000.0000 <br />{" "}
+                  <span className="font-semibold">Pelunasan:</span> Rp.
+                  2.000.0000
                 </p>
               </div>
               <div className="p-4 border-2 w-full border-t-0">
@@ -592,79 +793,108 @@ export default function Pembayaran() {
               </div>
             </div>
 
-             {/* kolom 2 */}
-             <div className="flex mx-6">
+            {/* kolom 2 */}
+            <div className="flex mx-6">
               <div className="p-4 border-2 border-r-0 border-t-0 w-full">
-                <p className="text-[#7A7A7A] font-semibold">
-                Subtotal
-                </p>
+                <p className="text-[#7A7A7A] font-semibold">Subtotal</p>
               </div>
               <div className="p-4 border-2 w-full border-t-0">
-                <p className="text-[#7A7A7A] font-semibold">
-                Rp. 16.055.000
-                </p>
+                <p className="text-[#7A7A7A] font-semibold">Rp. 16.055.000</p>
               </div>
             </div>
 
-             {/* kolom 3 */}
-             <div className="flex mx-6">
+            {/* kolom 3 */}
+            <div className="flex mx-6">
               <div className="p-4 border-2 border-t-0 w-full">
-                <p className="text-[#7A7A7A] font-semibold">
-                Shipping
-                </p>
-                <p className="text-[#7A7A7A] mt-1">
-                Free shipping
-                </p>
+                <p className="text-[#7A7A7A] font-semibold">Shipping</p>
+                <p className="text-[#7A7A7A] mt-1">Free shipping</p>
               </div>
             </div>
 
             {/* kolom 4 */}
             <div className="flex mx-6">
               <div className="p-4 border-2 border-r-0 border-t-0 w-full">
-                <p className="text-[#7A7A7A] font-bold">
-                Total
-                </p>
+                <p className="text-[#7A7A7A] font-bold">Total</p>
               </div>
               <div className="p-4 border-2 w-full border-t-0">
-                <p className="font-semibold">
-                Rp. 16.055.000
-                </p>
+                <p className="font-semibold">Rp. 16.055.000</p>
               </div>
             </div>
 
             {/* kolom 5 */}
             <div className="flex mx-6">
               <div className="p-4 border-2 border-r-0 border-t-0 w-full">
-                <p className="text-[#7A7A7A] font-bold">
-                DP
-                </p>
+                <p className="text-[#7A7A7A] font-bold">DP (Deposit)</p>
               </div>
               <div className="p-4 border-2 w-full border-t-0">
                 <p className="font-semibold">
-                Rp. 2.000.000
+                  {selectedOption === "DP"
+                    ? `Rp. ${depositValue.toLocaleString()}`
+                    : "Rp. 0"}
                 </p>
               </div>
             </div>
 
             {/* kolom 6 */}
-            <div className="flex mx-6">
+            {/* <div className="flex mx-6">
               <div className="p-4 border-2 border-r-0 border-t-0 w-full">
-                <p className="text-[#7A7A7A] font-bold">
-                Pelunasan
-                </p>
+                <p className="text-[#7A7A7A] font-bold">Pelunasan</p>
               </div>
               <div className="p-4 border-2 w-full border-t-0">
-                <p className="font-semibold">
-                Rp. 14.055.000
-                </p>
+                <p className="font-semibold">Rp. 14.055.000</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
         {/* Method */}
         <div className="lg:grid lg:grid-cols-12 my-20">
           <div className="lg:col-span-8 p-6 container_pembayaran">
+            {/* option dp & bayar lunas */}
+            <div
+              onClick={() => setSelectedOption("DP")}
+              className="lg:w-[100%] rounded-3xl bg-[#FFFFFF] shadow-container-2 p-6 cursor-pointer"
+            >
+              <div className="border-b border-gray-200 text-base lg:text-2xl pb-2 font-medium flex items-center justify-between ">
+                Bayar Uang Muka (DP)
+                {handleOptionChange == "DP" ? (
+                  <GiPlainCircle className="w-3  mr-6 text-[#4773CA]" />
+                ) : (
+                  <GoCircle className="w-3 mr-6" />
+                )}
+              </div>
+              <div className="text-[#4376FA] text-xs mt-2">
+                Minimum Dp <span className="font-bold">Rp 2.000.000 </span>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Payable in Deposit (Rp)"
+                  className="bg-[#F0F0F0] h-8 w-80 mt-2 p-2 rounded-md"
+                  value={depositValue}
+                  onChange={handleDepositChange}
+                />
+              </div>
+            </div>
+            <div
+              onClick={() => handleOptionChange("lunas")}
+              className="lg:w-[100%] rounded-3xl bg-[#FFFFFF] shadow-container-2 p-6 mt-4 cursor-pointer mb-8"
+            >
+              <div className="border-b border-gray-200 text-base lg:text-2xl pb-2 font-medium flex items-center justify-between ">
+                Bayar Lunas
+                {selectedOption == "lunas" ? (
+                  <GiPlainCircle className="w-3  mr-6 text-[#4773CA]" />
+                ) : (
+                  <GoCircle className="w-3 mr-6" />
+                )}
+              </div>
+              <div className="text-[#4376FA] text-xs mt-2">
+                Yang Harus Di Bayarkan{" "}
+                <span className="font-bold">Rp 6.890.000 </span>/item
+              </div>
+            </div>
+
+            {/* list payment */}
             {payments.map((payment, index) => (
               <>
                 <div
